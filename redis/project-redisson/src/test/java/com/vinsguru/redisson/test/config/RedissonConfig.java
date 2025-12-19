@@ -16,7 +16,7 @@ public class RedissonConfig {
     @SneakyThrows
     public RedissonClient getClient() {
         Properties props = new Properties();
-        InputStream in = com.vinsguru.redisson.test.config.RedissonConfig.class.getClassLoader().getResourceAsStream("redisson.properties");
+        InputStream in = RedissonConfig.class.getClassLoader().getResourceAsStream("redisson.properties");
         props.load(in);
         if (Objects.isNull(this.redissonClient)) {
             Config config = new Config();
