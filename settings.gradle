@@ -1,7 +1,5 @@
 rootProject.name = "redis"
 
-include "project-redisson"
-include "project-spring"
-
-project(":project-redisson").projectDir = file("redis/project-redisson")
-project(":project-spring").projectDir = file("redis/project-spring")
+include "redis:project-redisson"
+include "redis:project-spring"
+include 'lambda:project-lambda'
