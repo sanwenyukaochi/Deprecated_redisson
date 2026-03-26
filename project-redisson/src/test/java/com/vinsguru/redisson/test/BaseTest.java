@@ -10,16 +10,16 @@ import org.redisson.api.RedissonClient;
 public abstract class BaseTest {
 
     private final RedissonConfig redissonConfig = new RedissonConfig();
-    protected RedissonClient client;
+    protected RedissonClient redissonClient;
 
     @BeforeAll
     public void setClient() {
-        this.client = redissonConfig.getClient();
+        this.redissonClient = redissonConfig.getClient();
     }
 
     @AfterAll
     public void shutdown() {
-        this.client.shutdown();
+        this.redissonClient.shutdown();
     }
 
     protected void sleep(long millis){
