@@ -1,5 +1,0 @@
-rootProject.name = "redis"
-
-include "redis:project-redisson"
-include "redis:project-spring"
-include 'lambda:project-lambda'
