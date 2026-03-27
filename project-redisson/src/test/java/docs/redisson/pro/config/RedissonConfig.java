@@ -1,16 +1,14 @@
-package com.vinsguru.redisson.test.config;
+package docs.redisson.pro.config;
 
 import lombok.SneakyThrows;
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
 
-import java.util.Objects;
-
 public class RedissonConfig {
 
     @SneakyThrows
-    public RedissonClient getClient() {
+    public RedissonClient redissonClient() {
             Config config = new Config();
             config.setUsername("default")
                     .setPassword("");
