@@ -1,5 +1,8 @@
+import com.diffplug.gradle.spotless.SpotlessExtension
+
 plugins {
     id("java")
+    id("com.diffplug.spotless") version "8.4.0"
 }
 
 java {
@@ -26,6 +29,23 @@ dependencies {
     testImplementation("io.projectreactor:reactor-test")
     testImplementation("org.junit.jupiter:junit-jupiter:$junitVersion")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+}
+
+spotless {
+    encoding("UTF-8")
+    java {
+        palantirJavaFormat()
+        importOrder()
+        removeUnusedImports()
+        formatAnnotations()
+        trimTrailingWhitespace()
+        endWithNewline()
+        toggleOffOn()
+    }
+
+    kotlinGradle {
+        ktlint()
+    }
 }
 
 tasks.test {

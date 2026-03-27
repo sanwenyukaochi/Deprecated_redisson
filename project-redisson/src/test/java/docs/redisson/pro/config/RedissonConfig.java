@@ -9,12 +9,9 @@ public class RedissonConfig {
 
     @SneakyThrows
     public RedissonClient redissonClient() {
-            Config config = new Config();
-            config.setUsername("default")
-                    .setPassword("");
-            config.useSingleServer()
-                    .setAddress("redis://10.0.0.1:6379")
-                    .setDatabase(0);return Redisson.create(config);
+        Config config = new Config();
+        config.setUsername("default").setPassword("Syf#20011015#");
+        config.useSingleServer().setAddress("redis://10.0.0.1:6379").setDatabase(0);
+        return Redisson.create(config);
     }
-
 }
