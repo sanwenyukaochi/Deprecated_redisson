@@ -8,13 +8,13 @@ cucumber = "7.34.3"
 hutool = "5.8.46"
 jjwt = "0.13.0"
 jspecify = "1.0.0"
+junit = "6.0.1"
 kafkaAvroSerializer = "8.3.0"
 postgresql = "42.7.11"
 redisson = "4.6.1"
 springAi = "2.0.0-M5"
 springdoc = "3.0.3"
 testcontainers = "2.0.5"
-junit = "6.0.1"
 
 [libraries]
 

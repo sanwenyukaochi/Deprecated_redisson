@@ -1,36 +1,35 @@
 package com.sanwenyukaochi.redisson.六分布式对象;
 
 import com.sanwenyukaochi.redisson.BaseTest;
-import org.junit.jupiter.api.BeforeEach;
+import com.sanwenyukaochi.redisson.common.AnyObject;
+import java.util.HashMap;
+import java.util.Map;
 import org.junit.jupiter.api.Test;
 import org.redisson.api.RBucket;
 import org.redisson.api.RBuckets;
-
-import java.util.HashMap;
-import java.util.Map;
+import org.redisson.codec.TypedJsonJackson3Codec;
 
 public class 六61ObjectBucketTest extends BaseTest {
 
     @Test
     public void ObjectNameTest01() {
         redissonClient.getKeys().flushdb();
-        record AnyObject(int x) {
-        }
-        // Redisson的分布式RBucketJava对象是一种通用对象桶可以用来存放任类型的对象。 除了同步接口外，还提供了异步（Async）、反射式（Reactive）和RxJava2标准的接口。
-        RBucket<AnyObject> bucket = redissonClient.getBucket("anyObject");
+        // Redisson的分布式RBucketJava对象是一种通用对象桶可以用来存放任类型的对象。
+        // 除了同步接口外，还提供了异步（Async）、反射式（Reactive）和RxJava2标准的接口。
+        RBucket<AnyObject> bucket =
+                redissonClient.getBucket(
+                        "anyObject", new TypedJsonJackson3Codec(AnyObject.class));
         bucket.set(new AnyObject(1));
 
         bucket.setIfAbsent(new AnyObject(3));
         bucket.compareAndSet(new AnyObject(4), new AnyObject(5));
-//        bucket.getAndSet(new AnyObject(6));
+        //        bucket.getAndSet(new AnyObject(6));
     }
 
     @Test
     public void ObjectNameTest() {
         redissonClient.getKeys().flushdb();
-        record AnyObject(int x) {
-        }
-        RBuckets buckets = redissonClient.getBuckets();
+        RBuckets buckets = redissonClient.getBuckets(new TypedJsonJackson3Codec(AnyObject.class));
         Map<String, Object> map = new HashMap<>();
         map.put("myBucket1", new AnyObject(1));
         map.put("myBucket2", new AnyObject(2));
@@ -41,6 +40,7 @@ public class 六61ObjectBucketTest extends BaseTest {
         buckets.set(map);
         // 还可以通过RBuckets接口实现批量操作多个RBucket对象：
         Map<String, AnyObject> loadedBuckets = buckets.get("myBucket1", "myBucket2", "myBucket3");
-        loadedBuckets.forEach((key, value) -> System.out.println("key: " + key + " value: " + value));
+        loadedBuckets.forEach(
+                (key, value) -> System.out.println("key: " + key + " value: " + value));
     }
 }
