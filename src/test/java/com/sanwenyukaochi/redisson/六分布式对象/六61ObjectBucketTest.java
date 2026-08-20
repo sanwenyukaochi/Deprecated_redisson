@@ -24,7 +24,7 @@ public class 六61ObjectBucketTest extends BaseTest {
     }
 
     @Test
-    public void ObjectNameTest() {
+    public void ObjectNameTest02() {
         record AnyObject(int x) {}
         RBuckets buckets = redissonClient.getBuckets(new TypedJsonJackson3Codec(AnyObject.class));
         Map<String, Object> map = new HashMap<>();
