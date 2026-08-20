@@ -96,7 +96,8 @@ allprojects {
         }
     }
     dependencies {
-        implementation("org.redisson:redisson-all:${libs.versions.redisson.get()}")
+        implementation("org.redisson:redisson:${libs.versions.redisson.get()}")
+        implementation("tools.jackson.core:jackson-databind:3.0.0")
         testRuntimeOnly("org.junit.platform:junit-platform-launcher:${libs.versions.junit.get()}")
         testImplementation("org.junit.jupiter:junit-jupiter-engine:${libs.versions.junit.get()}")
         testImplementation("org.junit.jupiter:junit-jupiter-api:${libs.versions.junit.get()}")
