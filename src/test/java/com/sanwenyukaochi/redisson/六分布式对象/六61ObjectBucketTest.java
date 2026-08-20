@@ -23,7 +23,7 @@ public class 六61ObjectBucketTest extends BaseTest {
 
         bucket.setIfAbsent(new AnyObject(3));
         bucket.compareAndSet(new AnyObject(4), new AnyObject(5));
-        //        bucket.getAndSet(new AnyObject(6));
+        bucket.getAndSet(new AnyObject(6));
     }
 
     @Test
