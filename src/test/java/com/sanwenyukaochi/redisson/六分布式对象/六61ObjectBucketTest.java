@@ -1,7 +1,6 @@
 package com.sanwenyukaochi.redisson.六分布式对象;
 
 import com.sanwenyukaochi.redisson.BaseTest;
-import com.sanwenyukaochi.redisson.common.AnyObject;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
@@ -13,6 +12,7 @@ public class 六61ObjectBucketTest extends BaseTest {
 
     @Test
     public void ObjectNameTest01() {
+        record AnyObject(int x) {}
         // Redisson的分布式RBucketJava对象是一种通用对象桶可以用来存放任类型的对象。
         // 除了同步接口外，还提供了异步（Async）、反射式（Reactive）和RxJava2标准的接口。
         RBucket<AnyObject> bucket =
@@ -25,6 +25,7 @@ public class 六61ObjectBucketTest extends BaseTest {
 
     @Test
     public void ObjectNameTest() {
+        record AnyObject(int x) {}
         RBuckets buckets = redissonClient.getBuckets(new TypedJsonJackson3Codec(AnyObject.class));
         Map<String, Object> map = new HashMap<>();
         map.put("myBucket1", new AnyObject(1));
