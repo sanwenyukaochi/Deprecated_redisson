@@ -20,7 +20,6 @@ public class 六61ObjectBucketTest extends BaseTest {
                 redissonClient.getBucket(
                         "anyObject", new TypedJsonJackson3Codec(AnyObject.class));
         bucket.set(new AnyObject(1));
-
         bucket.setIfAbsent(new AnyObject(3));
         bucket.compareAndSet(new AnyObject(4), new AnyObject(5));
         bucket.getAndSet(new AnyObject(6));
