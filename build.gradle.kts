@@ -1,4 +1,5 @@
 import com.diffplug.gradle.spotless.SpotlessExtension
+import org.gradle.api.tasks.testing.Test
 
 plugins {
     java
@@ -79,9 +80,7 @@ allprojects {
             }
         }
     }
-}
 
-subprojects {
     pluginManager.withPlugin("java") {
         extensions.configure<JavaPluginExtension> {
             sourceCompatibility = JavaVersion.VERSION_26
@@ -91,6 +90,20 @@ subprojects {
             }
             withSourcesJar()
         }
+
+        tasks.withType<Test>().configureEach {
+            useJUnitPlatform()
+        }
     }
+    dependencies {
+        implementation("org.redisson:redisson-all:${libs.versions.redisson.get()}")
+        testRuntimeOnly("org.junit.platform:junit-platform-launcher:${libs.versions.junit.get()}")
+        testImplementation("org.junit.jupiter:junit-jupiter-engine:${libs.versions.junit.get()}")
+        testImplementation("org.junit.jupiter:junit-jupiter-api:${libs.versions.junit.get()}")
+        testImplementation("org.junit.jupiter:junit-jupiter:${libs.versions.junit.get()}")
+    }
+}
+
+subprojects {
 
 }

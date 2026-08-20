@@ -14,6 +14,7 @@ redisson = "4.6.1"
 springAi = "2.0.0-M5"
 springdoc = "3.0.3"
 testcontainers = "2.0.5"
+junit = "6.0.1"
 
 [libraries]
 
