@@ -4,6 +4,7 @@ import com.sanwenyukaochi.redisson.config.RedissonConfig;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestInstance;
 import org.redisson.api.RedissonClient;
 
@@ -16,6 +17,11 @@ public abstract class BaseTest {
     @BeforeAll
     public void setClient() {
         this.redissonClient = redissonConfig.redissonClient();
+    }
+
+    @BeforeEach
+    public void flushDatabase() {
+        redissonClient.getKeys().flushdb();
     }
 
     @AfterAll
