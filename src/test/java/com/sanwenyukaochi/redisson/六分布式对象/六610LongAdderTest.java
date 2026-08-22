@@ -14,5 +14,8 @@ public class 六610LongAdderTest extends BaseTest {
         atomicLong.increment();
         atomicLong.decrement();
         atomicLong.sum();
+        atomicLong.reset();
+        // 释放资源
+        atomicLong.destroy();
     }
 }

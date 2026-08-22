@@ -13,5 +13,8 @@ public class 六611DoubleAdderTest extends BaseTest {
         atomicDouble.increment();
         atomicDouble.decrement();
         atomicDouble.sum();
+        atomicDouble.reset();
+        // 释放资源
+        atomicDouble.destroy();
     }
 }
