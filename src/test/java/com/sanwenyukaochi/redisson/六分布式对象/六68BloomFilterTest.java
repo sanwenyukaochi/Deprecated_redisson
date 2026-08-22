@@ -7,7 +7,7 @@ import org.redisson.api.RBloomFilter;
 public class 六68BloomFilterTest extends BaseTest {
 
     @Test
-    public void ObjectNameTest01() {
+    public void BloomFilterTest01() {
         record AnyObject(int x) {}
         RBloomFilter<AnyObject> bloomFilter = redissonClient.getBloomFilter("sample");
         // 初始化布隆过滤器，预计统计元素数量为55000000，期望误差率为0.03
