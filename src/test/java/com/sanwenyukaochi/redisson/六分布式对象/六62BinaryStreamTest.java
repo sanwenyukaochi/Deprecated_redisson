@@ -13,7 +13,7 @@ public class 六62BinaryStreamTest extends BaseTest {
     @Test
     public void BinaryStreamTest01() {
         record AnyObject(int x) {}
-        RBinaryStream stream = redissonClient.getBinaryStream("anyStream");
+        RBinaryStream stream = redissonSingleClient.getBinaryStream("anyStream");
         byte[] content = JsonMapper.shared().writeValueAsBytes(new AnyObject(1));
         stream.set(content);
         byte[] data = stream.get();
@@ -25,7 +25,7 @@ public class 六62BinaryStreamTest extends BaseTest {
     @Test
     public void BinaryStreamTest02() throws IOException {
         record AnyObject(int x) {}
-        RBinaryStream stream = redissonClient.getBinaryStream("anyStream");
+        RBinaryStream stream = redissonSingleClient.getBinaryStream("anyStream");
         byte[] content = JsonMapper.shared().writeValueAsBytes(new AnyObject(1));
         try (OutputStream os = stream.getOutputStream()) {
             os.write(content);

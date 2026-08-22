@@ -9,14 +9,14 @@ public class 六67SubscriptiondistributionTest extends BaseTest {
     @Test
     public void SubscriptiondistributionTest01() throws InterruptedException {
         Thread listenerThread = new Thread(() -> {
-            RTopic topic = redissonClient.getTopic("anyTopic");
+            RTopic topic = redissonSingleClient.getTopic("anyTopic");
             topic.addListener(String.class, (channel, msg) -> {
                 IO.println("Listener received channel: "  + channel + ", msg: " + msg);
             });
         });
         listenerThread.start();
         Thread.sleep(1000);
-        RTopic topic = redissonClient.getTopic("anyTopic");
+        RTopic topic = redissonSingleClient.getTopic("anyTopic");
         topic.publish("Hello, this is a test message!");
         listenerThread.interrupt();
     }

@@ -14,7 +14,7 @@ public class 六63GeospatialBucketTest extends BaseTest {
 
     @Test
     public void GeospatialBucketTest01() {
-        RGeo<String> geo = redissonClient.getGeo("test");
+        RGeo<String> geo = redissonSingleClient.getGeo("test");
         // 添加地理位置
         geo.add(
                 new GeoEntry(13.361389, 38.115556, "Palermo"),

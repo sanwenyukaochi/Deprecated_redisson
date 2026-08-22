@@ -8,7 +8,7 @@ public class 六64BitSetTest extends BaseTest {
 
     @Test
     public void BitSetTest01() {
-        RBitSet set = redissonClient.getBitSet("simpleBitset");
+        RBitSet set = redissonSingleClient.getBitSet("simpleBitset");
         set.set(0, true);
         set.set(1812, false);
         set.clear(0);

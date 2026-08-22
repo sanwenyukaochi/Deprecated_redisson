@@ -8,7 +8,7 @@ public class 六69HyperLogLogTest extends BaseTest {
 
     @Test
     public void HyperLogLogTest01() {
-        RHyperLogLog<Integer> log = redissonClient.getHyperLogLog("log");
+        RHyperLogLog<Integer> log = redissonSingleClient.getHyperLogLog("log");
         log.add(1);
         log.add(2);
         log.add(3);

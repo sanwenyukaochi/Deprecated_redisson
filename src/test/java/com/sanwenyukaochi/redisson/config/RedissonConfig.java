@@ -7,11 +7,7 @@ import org.redisson.config.Config;
 
 public class RedissonConfig {
 
-    public RedissonClient redissonClient() {
-        return Redisson.create(clusterServers());
-    }
-
-    public Config clusterServers() {
+    public RedissonClient redissonClusterClient() {
         Config config = new Config();
         config.setPassword("123456")
                 .useClusterServers()
@@ -22,16 +18,16 @@ public class RedissonConfig {
                 .setDatabase(0)
                 .setScanInterval(2000);
         config.setCodec(new JsonJackson3Codec());
-        return config;
+        return Redisson.create(config);
     }
 
-    public Config singleServer() {
+    public RedissonClient redissonSingleClient() {
         Config config = new Config();
         config.setPassword("123456")
                 .useSingleServer()
-                .setAddress("redis://127.0.0.1:6379")
+                .setAddress("redis://172.30.0.40:6379")
                 .setDatabase(0);
         config.setCodec(new JsonJackson3Codec());
-        return config;
+        return Redisson.create(config);
     }
 }

@@ -9,7 +9,7 @@ public class 六65AtomicLongTest extends BaseTest {
 
     @Test
     public void AtomicLongTest01() {
-        RAtomicLong atomicLong = redissonClient.getAtomicLong("myAtomicLong");
+        RAtomicLong atomicLong = redissonSingleClient.getAtomicLong("myAtomicLong");
         atomicLong.set(3);
         atomicLong.incrementAndGet(LongIncrementArgs.by(5));
         atomicLong.get();

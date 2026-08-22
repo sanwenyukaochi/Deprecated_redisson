@@ -12,20 +12,24 @@ import org.redisson.api.RedissonClient;
 public abstract class BaseTest {
 
     private final RedissonConfig redissonConfig = new RedissonConfig();
-    protected RedissonClient redissonClient;
+    protected RedissonClient redissonSingleClient;
+    protected RedissonClient redissonClusterClient;
 
     @BeforeAll
     public void setClient() {
-        this.redissonClient = redissonConfig.redissonClient();
+        this.redissonSingleClient = redissonConfig.redissonSingleClient();
+        this.redissonClusterClient = redissonConfig.redissonClusterClient();
     }
 
     @BeforeEach
     public void flushDatabase() {
-        redissonClient.getKeys().flushdb();
+        redissonSingleClient.getKeys().flushdb();
+        redissonClusterClient.getKeys().flushdb();
     }
 
     @AfterAll
     public void shutdown() {
-        this.redissonClient.shutdown();
+        this.redissonSingleClient.shutdown();
+        this.redissonClusterClient.shutdown();
     }
 }

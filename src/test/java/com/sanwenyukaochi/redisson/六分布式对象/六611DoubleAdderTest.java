@@ -8,7 +8,7 @@ public class 六611DoubleAdderTest extends BaseTest {
 
     @Test
     public void DoubleAdder01() {
-        RDoubleAdder atomicDouble = redissonClient.getDoubleAdder("myDoubleAdder");
+        RDoubleAdder atomicDouble = redissonSingleClient.getDoubleAdder("myDoubleAdder");
         atomicDouble.add(11.2);
         atomicDouble.increment();
         atomicDouble.decrement();

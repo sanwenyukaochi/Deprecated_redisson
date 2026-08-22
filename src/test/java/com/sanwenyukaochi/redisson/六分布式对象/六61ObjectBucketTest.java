@@ -16,7 +16,7 @@ public class 六61ObjectBucketTest extends BaseTest {
         // Redisson的分布式RBucketJava对象是一种通用对象桶可以用来存放任类型的对象。
         // 除了同步接口外，还提供了异步（Async）、反射式（Reactive）和RxJava2标准的接口。
         RBucket<AnyObject> bucket =
-                redissonClient.getBucket("anyObject", new TypedJsonJackson3Codec(AnyObject.class));
+                redissonSingleClient.getBucket("anyObject", new TypedJsonJackson3Codec(AnyObject.class));
         bucket.set(new AnyObject(1));
         bucket.setIfAbsent(new AnyObject(3));
         bucket.compareAndSet(new AnyObject(4), new AnyObject(5));
@@ -26,7 +26,7 @@ public class 六61ObjectBucketTest extends BaseTest {
     @Test
     public void ObjectNameTest02() {
         record AnyObject(int x) {}
-        RBuckets buckets = redissonClient.getBuckets(new TypedJsonJackson3Codec(AnyObject.class));
+        RBuckets buckets = redissonSingleClient.getBuckets(new TypedJsonJackson3Codec(AnyObject.class));
         Map<String, Object> map = new HashMap<>();
         map.put("myBucket1", new AnyObject(1));
         map.put("myBucket2", new AnyObject(2));
