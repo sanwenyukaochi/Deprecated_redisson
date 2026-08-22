@@ -11,7 +11,7 @@ public class 六67SubscriptiondistributionTest extends BaseTest {
         Thread listenerThread = new Thread(() -> {
             RTopic topic = redissonClient.getTopic("anyTopic");
             topic.addListener(String.class, (channel, msg) -> {
-                System.out.println("Listener received channel: "  + channel + ", msg: " + msg);
+                IO.println("Listener received channel: "  + channel + ", msg: " + msg);
             });
         });
         listenerThread.start();
